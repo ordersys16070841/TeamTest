@@ -59,6 +59,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc-portlet:4.3.18.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.18.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.3.18.RELEASE" />
+          <element id="library" level="application_server_libraries" name="Tomcat 8.5.41" />
         </element>
       </element>
     </root>
