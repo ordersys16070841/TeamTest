@@ -6,4 +6,14 @@
     <select id="checkClientAcot" parameterType="pojo.Client" resultType="Integer">
         select count(*) from tb_client where cacot=#{cacot} and cpsd=#{cpsd}
     </select>
+
+    <select id="checkClientAcotRepeat" parameterType="pojo.Client" resultType="Integer">
+        select count(*) from tb_client where cacot=#{cacot}
+    </select>
+
+    <insert id="registerClient" parameterType="pojo.Client">
+        insert into tb_client (cacot,cpsd,cname) values(#{cacot},#{cpsd},#{cname})
+    </insert>
+
+
 </mapper>

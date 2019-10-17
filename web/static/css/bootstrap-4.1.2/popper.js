@@ -278,9 +278,9 @@ function findCommonOffsetParent(element1, element2) {
  * @returns {number} amount of scrolled pixels
  */
 function getScroll(element) {
-  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'bosstop.jsp';
 
-  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var upperSide = side === 'bosstop.jsp' ? 'scrollTop' : 'scrollLeft';
   var nodeName = element.nodeName;
 
   if (nodeName === 'BODY' || nodeName === 'HTML') {
@@ -304,7 +304,7 @@ function getScroll(element) {
 function includeScroll(rect, element) {
   var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-  var scrollTop = getScroll(element, 'top');
+  var scrollTop = getScroll(element, 'bosstop.jsp');
   var scrollLeft = getScroll(element, 'left');
   var modifier = subtract ? -1 : 1;
   rect.top += scrollTop * modifier;
@@ -428,7 +428,7 @@ var _extends = Object.assign || function (target) {
 function getClientRect(offsets) {
   return _extends({}, offsets, {
     right: offsets.left + offsets.width,
-    bottom: offsets.top + offsets.height
+    bottom: offsets.bosstop + offsets.height
   });
 }
 
@@ -448,7 +448,7 @@ function getBoundingClientRect(element) {
   if (isIE10$1()) {
     try {
       rect = element.getBoundingClientRect();
-      var scrollTop = getScroll(element, 'top');
+      var scrollTop = getScroll(element, 'bosstop.jsp');
       var scrollLeft = getScroll(element, 'left');
       rect.top += scrollTop;
       rect.left += scrollLeft;
@@ -500,7 +500,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
   var borderLeftWidth = +styles.borderLeftWidth.split('px')[0];
 
   var offsets = getClientRect({
-    top: childrenRect.top - parentRect.top - borderTopWidth,
+    top: childrenRect.bosstop - parentRect.bosstop - borderTopWidth,
     left: childrenRect.left - parentRect.left - borderLeftWidth,
     width: childrenRect.width,
     height: childrenRect.height
@@ -658,7 +658,7 @@ function computeAutoPlacement(placement, refRect, popper, reference, boundariesE
   var rects = {
     top: {
       width: boundaries.width,
-      height: refRect.top - boundaries.top
+      height: refRect.bosstop - boundaries.top
     },
     right: {
       width: boundaries.right - refRect.right,
@@ -737,7 +737,7 @@ function getOuterSizes(element) {
  * @returns {String} flipped placement
  */
 function getOppositePlacement(placement) {
-  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  var hash = { left: 'right', right: 'left', bottom: 'bosstop.jsp', top: 'bottom' };
   return placement.replace(/left|right|bottom|top/g, function (matched) {
     return hash[matched];
   });
@@ -767,8 +767,8 @@ function getPopperOffsets(popper, referenceOffsets, placement) {
 
   // depending by the popper placement we have to compute its offsets slightly differently
   var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-  var mainSide = isHoriz ? 'top' : 'left';
-  var secondarySide = isHoriz ? 'left' : 'top';
+  var mainSide = isHoriz ? 'bosstop.jsp' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'bosstop.jsp';
   var measurement = isHoriz ? 'height' : 'width';
   var secondaryMeasurement = !isHoriz ? 'height' : 'width';
 
@@ -1072,7 +1072,7 @@ function setStyles(element, styles) {
   Object.keys(styles).forEach(function (prop) {
     var unit = '';
     // add unit if the value is numeric and is one of the following
-    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+    if (['width', 'height', 'bosstop.jsp', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
       unit = 'px';
     }
     element.style[prop] = styles[prop] + unit;
@@ -1187,12 +1187,12 @@ function computeStyle(data, options) {
   // floor sides to avoid blurry text
   var offsets = {
     left: Math.floor(popper.left),
-    top: Math.floor(popper.top),
+    top: Math.floor(popper.bosstop),
     bottom: Math.floor(popper.bottom),
     right: Math.floor(popper.right)
   };
 
-  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideA = x === 'bottom' ? 'bosstop.jsp' : 'bottom';
   var sideB = y === 'right' ? 'left' : 'right';
 
   // if gpuAcceleration is set to `true` and transform is supported,
@@ -1318,7 +1318,7 @@ function arrow(data, options) {
   var len = isVertical ? 'height' : 'width';
   var sideCapitalized = isVertical ? 'Top' : 'Left';
   var side = sideCapitalized.toLowerCase();
-  var altSide = isVertical ? 'left' : 'top';
+  var altSide = isVertical ? 'left' : 'bosstop.jsp';
   var opSide = isVertical ? 'bottom' : 'right';
   var arrowElementSize = getOuterSizes(arrowElement)[len];
 
@@ -1402,7 +1402,7 @@ function getOppositeVariation(variation) {
  * @method placements
  * @memberof Popper
  */
-var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'bosstop.jsp', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
 
 // Get rid of `auto` `auto-start` and `auto-end`
 var validPlacements = placements.slice(3);
@@ -1484,17 +1484,17 @@ function flip(data, options) {
 
     // using floor because the reference offsets may contain decimals we are not going to consider here
     var floor = Math.floor;
-    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'bosstop.jsp' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.bosstop) < floor(refOffsets.bottom);
 
     var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
     var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
-    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsTop = floor(popperOffsets.bosstop) < floor(boundaries.top);
     var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
 
-    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'bosstop.jsp' && overflowsTop || placement === 'bottom' && overflowsBottom;
 
     // flip the variation if required
-    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+    var isVertical = ['bosstop.jsp', 'bottom'].indexOf(placement) !== -1;
     var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
@@ -1535,9 +1535,9 @@ function keepTogether(data) {
 
   var placement = data.placement.split('-')[0];
   var floor = Math.floor;
-  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var isVertical = ['bosstop.jsp', 'bottom'].indexOf(placement) !== -1;
   var side = isVertical ? 'right' : 'bottom';
-  var opSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'left' : 'bosstop.jsp';
   var measurement = isVertical ? 'width' : 'height';
 
   if (popper[side] < floor(reference[opSide])) {
@@ -1712,7 +1712,7 @@ function offset(data, _ref) {
   } else if (basePlacement === 'right') {
     popper.top += offsets[0];
     popper.left += offsets[1];
-  } else if (basePlacement === 'top') {
+  } else if (basePlacement === 'bosstop.jsp') {
     popper.left += offsets[0];
     popper.top -= offsets[1];
   } else if (basePlacement === 'bottom') {
@@ -1756,7 +1756,7 @@ function preventOverflow(data, options) {
       return defineProperty({}, placement, value);
     },
     secondary: function secondary(placement) {
-      var mainSide = placement === 'right' ? 'left' : 'top';
+      var mainSide = placement === 'right' ? 'left' : 'bosstop.jsp';
       var value = popper[mainSide];
       if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
         value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
@@ -1766,7 +1766,7 @@ function preventOverflow(data, options) {
   };
 
   order.forEach(function (placement) {
-    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    var side = ['left', 'bosstop.jsp'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
     popper = _extends({}, popper, check[side](placement));
   });
 
@@ -1793,8 +1793,8 @@ function shift(data) {
         reference = _data$offsets.reference,
         popper = _data$offsets.popper;
 
-    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
-    var side = isVertical ? 'left' : 'top';
+    var isVertical = ['bottom', 'bosstop.jsp'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'bosstop.jsp';
     var measurement = isVertical ? 'width' : 'height';
 
     var shiftOffsets = {
@@ -1862,9 +1862,9 @@ function inner(data) {
 
   var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
 
-  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+  var subtractLength = ['bosstop.jsp', 'left'].indexOf(basePlacement) === -1;
 
-  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+  popper[isHoriz ? 'left' : 'bosstop.jsp'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
 
   data.placement = getOppositePlacement(placement);
   data.offsets.popper = getClientRect(popper);
@@ -1991,7 +1991,7 @@ var modifiers = {
      * Popper will try to prevent overflow following these priorities by default,
      * then, it could overflow on the left and on top of the `boundariesElement`
      */
-    priority: ['left', 'right', 'top', 'bottom'],
+    priority: ['left', 'right', 'bosstop.jsp', 'bottom'],
     /**
      * @prop {number} padding=5
      * Amount of pixel used to define a minimum distance between the boundaries

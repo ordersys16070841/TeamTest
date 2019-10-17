@@ -5,5 +5,7 @@ import org.springframework.ui.Model;
 
 
 public interface BossService {
-    public String toBossHome(Model model);
+
+    public String toAuthenti(Model model);
+    public String authenti(int wid ,Model model);
 }

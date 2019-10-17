@@ -1,7 +1,9 @@
 package control;
 
+import net.sf.jsqlparser.statement.select.Wait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +12,8 @@ import pojo.Client;
 import pojo.Waiter;
 import service.AccountService;
 import tools.MD5Util2;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AccountController {
@@ -44,8 +48,28 @@ public class AccountController {
     }
 
     @RequestMapping("/waiterLogin")
-    public String waiterLogin(Waiter waiter,Model model){
+    public String waiterLogin(Waiter waiter,Model model, HttpSession session){
         waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
-        return accountService.waiterLogin(waiter,model);
+        return accountService.waiterLogin(waiter,model,session);
+    }
+
+    @RequestMapping("/toClientRegister")
+    public String toClientRegister(){
+        return "client/clientRegister";
+    }
+
+    @RequestMapping("/clientRegister")
+    public String clientRegister(Client client,Model model){
+        return accountService.clientRegister(client,model);
+    }
+
+    @RequestMapping("/toWaiterRegister")
+    public String toWaiterRegister(){
+        return "waiter/waiterRegister";
+    }
+
+    @RequestMapping("/waiterRegister")
+    public String waiterRegister(Waiter waiter, Model model){
+        return accountService.waiterRegister(waiter,model);
     }
 }

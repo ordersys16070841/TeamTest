@@ -12,9 +12,9 @@
     </style>
 </head>
 <body style="background-color: #F5FFFA">
-<jsp:include page="../top.jsp"></jsp:include>
+<jsp:include page="bosstop.jsp"></jsp:include>
 <div class="container">
-    <form action="register" method="post" enctype="multipart/form-data" class="form-horizontal"
+    <form action="register" method="post" class="form-horizontal"
           style="margin-left: 10%;margin-right: 10%;margin-top: 7%;margin-bottom: 7%">
         <table class="table table-striped table-hover">
 

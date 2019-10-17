@@ -776,7 +776,7 @@
 				x: this.settings.rtl ?
 					stage.left + this.$stage.width() - this.width() + this.settings.margin :
 					stage.left,
-				y: stage.top
+				y: stage.bosstop
 			};
 		}
 

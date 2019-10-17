@@ -8,4 +8,6 @@ import pojo.Client;
 @Mapper
 public interface ClientDao {
     public int checkClientAcot(Client client);
+    public int checkClientAcotRepeat(Client client);
+    public int registerClient(Client client);
 }

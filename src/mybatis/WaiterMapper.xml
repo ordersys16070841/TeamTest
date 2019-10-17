@@ -12,4 +12,13 @@
         update tb_waiter set wstatus = 1 where wacot=#{wacot} ;
     </update>
 
+    <select id="checkWaiterAcotRepeat" parameterType="pojo.Waiter" resultType="Integer">
+        select count(*) from tb_waiter where wacot=#{wacot}
+    </select>
+
+    <insert id="registerWaiter" parameterType="pojo.Waiter">
+         insert into tb_waiter (wacot,wpsd,wname) values(#{wacot},#{wpsd},#{wname})
+    </insert>
+
+
 </mapper>

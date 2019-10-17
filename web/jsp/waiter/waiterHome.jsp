@@ -12,6 +12,14 @@
     </style>
 </head>
 <body style="background-color: #F5FFFA">
+<c:choose>
+    <c:when test="${empty waiterName}">
+        <jsp:forward page="${pageContext.request.contextPath}/toWaiterLogin">
+            <jsp:param name="loginMsg" value="请先进行登录" />
+        </jsp:forward>
+    </c:when>
+</c:choose>
+
 <jsp:include page="../top.jsp"></jsp:include>
 <div class="container">
     <form action="register" method="post" enctype="multipart/form-data" class="form-horizontal"
