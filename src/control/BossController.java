@@ -1,9 +1,12 @@
 package control;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pojo.Menu;
+import pojo.MenuClass;
 import service.BossService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,5 +30,30 @@ public class BossController {
     public String authenti(HttpServletRequest request, Model model){
         int wid=Integer.parseInt(request.getParameter("wid"));
         return bossService.authenti(wid,model);
+    }
+
+    @RequestMapping("toSetMenu")
+    public String toSetMenu(Model model){
+        return bossService.toSetMenu(model);
+    }
+
+    @RequestMapping("addMenuClass")
+    public String addMenuClass(MenuClass menuClass, Model model){
+        return bossService.addMenuClass(menuClass,model);
+    }
+
+    @RequestMapping("addMenu")
+    public String addMenu(Menu menu, Model model){
+        return bossService.addMenu(menu,model);
+    }
+
+    @RequestMapping("toMenusInfo")
+    public String toMenusInfo(Model model){
+        return bossService.toMenusInfo(model);
+    }
+
+    @RequestMapping("modifyMenu")
+    public String modifyMenu(Menu menu,Model model){
+        return bossService.modifyMenu(menu,model);
     }
 }

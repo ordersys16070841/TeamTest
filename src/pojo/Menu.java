@@ -7,6 +7,7 @@ public class Menu {
     private double mcost;
     private double mprice;
     private int mamot;
+    private String className;
 
     public Menu() {
     }
@@ -57,5 +58,13 @@ public class Menu {
 
     public void setMamot(int mamot) {
         this.mamot = mamot;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

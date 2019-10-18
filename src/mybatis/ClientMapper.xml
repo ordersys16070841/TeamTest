@@ -15,5 +15,11 @@
         insert into tb_client (cacot,cpsd,cname) values(#{cacot},#{cpsd},#{cname})
     </insert>
 
+    <select id="getMenuClass" resultType="pojo.MenuClass">
+        select * from tb_class
+    </select>
 
+    <select id="getMenusByClass" resultType="pojo.Menu" parameterType="int">
+        select * from tb_menu where mclass=#{mclass}
+    </select>
 </mapper>
