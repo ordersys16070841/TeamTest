@@ -27,6 +27,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public String clientAddMenu(int mclass,Model model){
+
         return "";
     }
 }

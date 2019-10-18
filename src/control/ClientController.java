@@ -13,6 +13,12 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    /**
+     * 客户主页
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping("clienthome")
     public String clienthome(HttpServletRequest request, Model model){
         int mclass;
@@ -24,6 +30,12 @@ public class ClientController {
         return clientService.clienthome(mclass,model);
     }
 
+    /**
+     * 客户点菜
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping("clientAddMenu")
     public String clientAddMenu(HttpServletRequest request,Model model){
         int mclass=Integer.parseInt(request.getParameter("mclass"));

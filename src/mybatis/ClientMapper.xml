@@ -22,4 +22,6 @@
     <select id="getMenusByClass" resultType="pojo.Menu" parameterType="int">
         select * from tb_menu where mclass=#{mclass}
     </select>
+
+
 </mapper>

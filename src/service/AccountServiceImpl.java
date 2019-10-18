@@ -25,23 +25,21 @@ public class AccountServiceImpl implements AccountService{
     @Autowired
     private WaiterDao waiterDao;
 
-    public String bossLogin(Boss boss, Model model){
+    public int bossLogin(Boss boss, Model model){
         if(bossDao.checkBossAcot(boss)>0){
-            return "boss/bossHome";
+            return 1;
         }
         else{
-            model.addAttribute("loginMsg","登录失败，账号或密码错误");
-            return "boss/bossLogin";
+            return 0;
         }
     }
 
-    public String clientLogin(Client client, Model model){
+    public int clientLogin(Client client, Model model){
         if(clientDao.checkClientAcot(client)>0){
-            return "client/clientHome";
+            return 1;
         }
         else{
-            model.addAttribute("loginMsg","登录失败，账号或密码错误");
-            return "client/clientLogin";
+            return 0;
         }
     }
 
