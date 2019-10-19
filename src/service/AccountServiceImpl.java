@@ -25,6 +25,8 @@ public class AccountServiceImpl implements AccountService{
     @Autowired
     private WaiterDao waiterDao;
 
+/***************************BossLogin start***************************************************/
+
     public int bossLogin(Boss boss, Model model){
         if(bossDao.checkBossAcot(boss)>0){
             return 1;
@@ -33,6 +35,12 @@ public class AccountServiceImpl implements AccountService{
             return 0;
         }
     }
+
+/***************************BossLogin end***************************************************/
+
+
+
+    /***************************ClientLogin start***************************************************/
 
     public int clientLogin(Client client, Model model){
         if(clientDao.checkClientAcot(client)>0){
@@ -43,42 +51,47 @@ public class AccountServiceImpl implements AccountService{
         }
     }
 
-    public String waiterLogin(Waiter waiter, Model model, HttpSession session){
-        if(waiterDao.checkWaiterAcot(waiter)>0){
-            waiter.setWstatus(2);
-            waiterDao.updateStatus(waiter);
-            session.setAttribute("waiterName",waiter.getWname());
-            return "forwarrd:toWaiterHome";
-        }
-        else{
-            model.addAttribute("loginMsg","登录失败，账号或密码错误");
-            return "waiter/waiterLogin";
-        }
+    /***************************ClientLogin end***************************************************/
+
+
+    /***************************WaiterLogin start***************************************************/
+
+    public int updateStatus(Waiter waiter){
+        return waiterDao.updateStatus(waiter);
     }
 
-    public String clientRegister(Client client,Model model){
-        if(clientDao.checkClientAcotRepeat(client)>0){
-            model.addAttribute("registerMsg","注册失败，该账号已被注册");
-            return "client/clientRegister";
-        }
-        else{
-            client.setCpsd(MD5Util2.getStringMD5(client.getCpsd()));
-            clientDao.registerClient(client);
-            model.addAttribute("registerMsg","注册成功");
-            return "client/clientRegister";
-        }
+
+    public int waiterLogin(Waiter waiter){
+        return waiterDao.checkWaiterAcot(waiter);
     }
 
-    public String waiterRegister(Waiter waiter, Model model){
-        if(waiterDao.checkWaiterAcotRepeat(waiter)>0){
-            model.addAttribute("registerMsg","注册失败，该账号已被注册");
-            return "waiter/waiterRegister";
-        }
-        else{
-            waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
-            waiterDao.registerWaiter(waiter);
-            model.addAttribute("registerMsg","注册信息已提交给店长，等待店长验证");
-            return "waiter/waiterRegister";
-        }
+    /***************************WaiterLogin end***************************************************/
+
+
+
+    /***************************ClientRegister start***************************************************/
+
+    public int checkClientAcotRepeat(Client client){
+        return clientDao.checkClientAcotRepeat(client);
     }
+
+    public int registerClient(Client client){
+        return clientDao.registerClient(client);
+    }
+
+    /***************************ClientRegister end***************************************************/
+
+
+    /***************************WaiterRegister start***************************************************/
+
+    public int checkWaiterAcotRepeat(Waiter waiter){
+        return waiterDao.checkWaiterAcotRepeat(waiter);
+    }
+
+    public int registerWaiter(Waiter waiter){
+        return waiterDao.registerWaiter(waiter);
+    }
+
+    /***************************WaiterRegister end***************************************************/
+
 }

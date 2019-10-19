@@ -16,15 +16,17 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientDao clientDao;
 
-    public String clienthome(int mclass,Model model){
-        List<MenuClass> menuClassList=clientDao.getMenuClass();
-        int size=menuClassList.size();
-        model.addAttribute("menuClassList",menuClassList);
-        model.addAttribute("size",size);
-        List<Menu> menuList=clientDao.getMenusByClass(mclass);
-        model.addAttribute("menuList",menuList);
-        return "client/clientHome";
+    /***************************客户主页 start***************************************************/
+
+    public List<MenuClass> getMenuClass(){
+        return clientDao.getMenuClass();
     }
+
+    public List<Menu> getMenusByClass(int mclass){
+        return clientDao.getMenusByClass(mclass);
+    }
+
+    /***************************客户主页 end***************************************************/
 
     public String clientAddMenu(int mclass,Model model){
 

@@ -3,10 +3,8 @@ package control;
 import net.sf.jsqlparser.statement.select.Wait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import pojo.Boss;
 import pojo.Client;
 import pojo.Waiter;
@@ -20,6 +18,11 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+
+
+
+/***************************BossLogin start***************************************************/
+
     /**
      * 打开店长登录页面
      * @return
@@ -28,6 +31,7 @@ public class AccountController {
     public String toBossLogin(){
         return "boss/bossLogin";
     }
+
 
     /**
      * 处理店长登录
@@ -45,6 +49,14 @@ public class AccountController {
             return "boss/bossLogin";
         }
     }
+
+
+/***************************BossLogin end***************************************************/
+
+
+
+/***************************ClientLogin start***************************************************/
+
 
     /**
      * 打开客户登录页面
@@ -72,6 +84,11 @@ public class AccountController {
         }
     }
 
+/***************************ClientLogin end***************************************************/
+
+
+    /***************************WaiterLogin start***************************************************/
+
     /**
      * 打开服务员登录页面
      * @return
@@ -90,9 +107,21 @@ public class AccountController {
      */
     @RequestMapping("/waiterLogin")
     public String waiterLogin(Waiter waiter,Model model, HttpSession session){
-        waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
-        return accountService.waiterLogin(waiter,model,session);
+        if(accountService.waiterLogin(waiter)>0){
+            waiter.setWstatus(2);
+            accountService.updateStatus(waiter);
+            session.setAttribute("waiterName",waiter.getWname());
+            return "forwarrd:toWaiterHome";
+        }else{
+            model.addAttribute("loginMsg","登录失败，账号或密码错误");
+            return "waiter/waiterLogin";
+        }
     }
+
+    /***************************WaiterLogin end***************************************************/
+
+
+    /***************************ClientRegister start***************************************************/
 
     /**
      * 打开客户注册页面
@@ -111,8 +140,22 @@ public class AccountController {
      */
     @RequestMapping("/clientRegister")
     public String clientRegister(Client client,Model model){
-        return accountService.clientRegister(client,model);
+        if(accountService.checkClientAcotRepeat(client)>0){
+            model.addAttribute("registerMsg","注册失败，该账号已被注册");
+            return "client/clientRegister";
+        }else{
+            client.setCpsd(MD5Util2.getStringMD5(client.getCpsd()));
+            accountService.registerClient(client);
+            model.addAttribute("registerMsg","注册成功");
+            return "client/clientRegister";
+        }
     }
+
+    /***************************ClientRegister end***************************************************/
+
+
+
+    /***************************WaiterRegister start***************************************************/
 
     /**
      * 打开服务员注册页面
@@ -131,6 +174,17 @@ public class AccountController {
      */
     @RequestMapping("/waiterRegister")
     public String waiterRegister(Waiter waiter, Model model){
-        return accountService.waiterRegister(waiter,model);
+        if(accountService.checkWaiterAcotRepeat(waiter)>0){
+            model.addAttribute("registerMsg","注册失败，该账号已被注册");
+            return "waiter/waiterRegister";
+        }else{
+            waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
+            accountService.registerWaiter(waiter);
+            model.addAttribute("registerMsg","注册信息已提交给店长，等待店长验证");
+            return "waiter/waiterRegister";
+        }
     }
+
+    /***************************WaiterRegister end***************************************************/
+
 }

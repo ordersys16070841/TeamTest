@@ -1,8 +1,13 @@
 package service;
 
 import org.springframework.ui.Model;
+import pojo.Menu;
+import pojo.MenuClass;
+
+import java.util.List;
 
 public interface ClientService {
-    public String clienthome(int mclass,Model model);
+    public List<MenuClass> getMenuClass();
+    public List<Menu> getMenusByClass(int mclass);
     public String clientAddMenu(int mclass,Model model);
 }
