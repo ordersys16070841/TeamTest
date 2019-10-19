@@ -33,6 +33,7 @@ public class AccountServiceImpl implements AccountService{
             return 0;
         }
     }
+    /********************标准********************************************/
 
     public int clientLogin(Client client, Model model){
         if(clientDao.checkClientAcot(client)>0){
@@ -42,6 +43,12 @@ public class AccountServiceImpl implements AccountService{
             return 0;
         }
     }
+
+    public Client getClientInfo(Client client) {
+        return clientDao.getClientInfo(client);
+    }
+
+    /********************标准********************************************/
 
     public String waiterLogin(Waiter waiter, Model model, HttpSession session){
         if(waiterDao.checkWaiterAcot(waiter)>0){
@@ -55,7 +62,6 @@ public class AccountServiceImpl implements AccountService{
             return "waiter/waiterLogin";
         }
     }
-
     public String clientRegister(Client client,Model model){
         if(clientDao.checkClientAcotRepeat(client)>0){
             model.addAttribute("registerMsg","注册失败，该账号已被注册");

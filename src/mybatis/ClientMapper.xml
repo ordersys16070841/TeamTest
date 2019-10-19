@@ -7,6 +7,10 @@
         select count(*) from tb_client where cacot=#{cacot} and cpsd=#{cpsd}
     </select>
 
+    <select id="getClientInfo" parameterType="pojo.Client" resultType="pojo.Client">
+        select * from tb_client where cacot=#{cacot}
+    </select>
+
     <select id="checkClientAcotRepeat" parameterType="pojo.Client" resultType="Integer">
         select count(*) from tb_client where cacot=#{cacot}
     </select>

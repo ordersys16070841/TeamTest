@@ -18,6 +18,8 @@ public interface ClientDao {
      */
     public int checkClientAcot(Client client);
 
+    public Client getClientInfo(Client client);
+
     /**
      * 检查客户账号是否重复
      * @param client

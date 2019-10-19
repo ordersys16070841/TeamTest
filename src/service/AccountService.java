@@ -11,7 +11,8 @@ import javax.servlet.http.HttpSession;
 public interface AccountService {
     public int bossLogin(Boss boss, Model model);
     public int clientLogin(Client client, Model model);
+    public Client getClientInfo(Client client);
     public String waiterLogin(Waiter waiter, Model model, HttpSession session);
-    public String clientRegister(Client client,Model model);
+    public String clientRegister(Client client, Model model);
     public String waiterRegister(Waiter waiter, Model model);
 }
