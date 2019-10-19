@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BossDao">
+
+    <select id="checkBossAcot" parameterType="pojo.Boss" resultType="Integer">
+        select count(*) from tb_boss where bacot=#{bacot} and bpsd=#{bpsd}
+    </select>
+
+    <select id="getWaitersInfo" resultType="pojo.Waiter">
+        select * from tb_waiter where wstatus=0;
+    </select>
+
+    <update id="authentiWaiter" parameterType="pojo.Waiter">
+        update tb_waiter set wstatus=1 where wid=#{wid}
+    </update>
+
+    <select id="getMenuClass" resultType="pojo.MenuClass">
+        select * from tb_class
+    </select>
+
+    <insert id="addMenuClass" parameterType="pojo.MenuClass">
+        insert into tb_class (className) value(#{className})
+    </insert>
+
+    <select id="checkMenuClassRepeat" parameterType="pojo.MenuClass" resultType="Integer">
+        select count(*) from tb_class where className=#{className}
+    </select>
+
+    <select id="checkMenuRepeat" parameterType="pojo.Menu" resultType="Integer">
+        select count(*) from tb_menu where mname=#{mname}
+    </select>
+
+    <insert id="addMenu" parameterType="pojo.Menu">
+        insert into tb_menu (mname,mcost,mprice,mclass) values(#{mname},#{mcost},#{mprice},#{mclass})
+    </insert>
+
+    <select id="getMenusInfo" resultType="pojo.Menu">
+        select tb_menu.mid,tb_menu.mname,tb_menu.mcost,tb_menu.mamot,tb_menu.mclass,tb_menu.mprice,tb_class.className
+         from tb_menu
+          LEFT JOIN tb_class on tb_menu.mclass=tb_class.mclass
+           order by mclass
+    </select>
+
+    <update id="modifyMenu" parameterType="pojo.Menu">
+        update tb_menu set mcost=#{mcost},mprice=#{mprice},mamot=#{mamot} where mId=#{mId}
+    </update>
+</mapper>
+
+
