@@ -7,6 +7,10 @@
         select count(*) from tb_client where cacot=#{cacot} and cpsd=#{cpsd}
     </select>
 
+    <select id="getClientInfo" parameterType="pojo.Client" resultType="pojo.Client">
+        select * from tb_client where cacot=#{cacot}
+    </select>
+
     <select id="checkClientAcotRepeat" parameterType="pojo.Client" resultType="Integer">
         select count(*) from tb_client where cacot=#{cacot}
     </select>
@@ -23,5 +27,49 @@
         select * from tb_menu where mclass=#{mclass}
     </select>
 
+    <select id="getAllMenus" resultType="pojo.Menu">
+        select * from tb_menu
+    </select>
+
+    <select id="getMenuNmeAPrice" parameterType="int" resultType="pojo.Menu">
+        select mname,mprice from tb_menu where mid=#{mId}
+    </select>
+
+    <select id="getMenuAmot" resultType="int" parameterType="int">
+        select mamot from tb_menu where mid=#{mId}
+    </select>
+
+    <select id="getMaxOid" resultType="int">
+        select max(oId) from tb_order
+    </select>
+
+    <select id="getCidByAcot" resultType="int" parameterType="pojo.Client">
+        select cId from tb_client where cacot=#{cacot}
+    </select>
+
+    <select id="getWaitersOnline" resultType="Integer">
+        select wId from tb_waiter where wstatus=1
+    </select>
+
+    <insert id="generateOrder" parameterType="pojo.Order">
+        insert into tb_order (oId,cId,wId,deskId,total,pay,status,odate)
+           values (#{oId},#{cId},#{wId},#{deskId},#{total},#{pay},#{status},NOW())
+    </insert>
+
+    <insert id="generateOrderedMenu" parameterType="pojo.OrderedMenu">
+        insert into tb_orderedmenu (oId,mId,omamot,deliver) values (#{oId},#{mId},#{omamot},#{deliver})
+    </insert>
+
+    <select id="getClientNameByCid" parameterType="int" resultType="String">
+        select cname from tb_client where cId=#{cId}
+    </select>
+
+    <select id="getCurrentOrder" parameterType="int" resultType="pojo.Order">
+        select * from tb_order where cId=#{cId} and status=0
+    </select>
+
+    <select id="getMenusByOid" parameterType="int" resultType="pojo.OrderedMenu">
+        select * from tb_orderedmenu where oId=#{oId}
+    </select>
 
 </mapper>

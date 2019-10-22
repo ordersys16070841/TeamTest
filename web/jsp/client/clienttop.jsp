@@ -58,9 +58,9 @@
                     <!-- Main Navigation -->
                     <nav class="main_nav">
                         <ul class="d-flex flex-row align-items-center justify-content-start" id="na">
-                            <li><a href="${pageContext.request.contextPath}/" >首页</a></li>
-                            <li><a href="${pageContext.request.contextPath}/">订购车</a></li>
-                            <li><a href="${pageContext.request.contextPath}/">我的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/clienthome" >首页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/toOrderCar">订购车</a></li>
+                            <li><a href="${pageContext.request.contextPath}/toMyOrders">我的订单</a></li>
                             <li><a href="${pageContext.request.contextPath}/">历史订单</a></li>
                         </ul>
                     </nav>
@@ -69,12 +69,12 @@
                     <div class="log_reg d-flex flex-row align-items-center justify-content-start">
                         <ul class="d-flex flex-row align-items-start justify-content-start navbar-nav">
                             <c:choose>
-                                <c:when test="${empty clientname}">
-                                    <li><a href="${pageContext.request.contextPath}/">登录</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">注册</a></li>
+                                <c:when test="${empty clientName}">
+                                    <li><a href="${pageContext.request.contextPath}/toClientLogin">登录</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/toClientRegister">注册</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="${pageContext.request.contextPath}/">${clientname}</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/">${clientName}</a></li>
                                     <li><a href="${pageContext.request.contextPath}/logout">注销</a></li>
                                 </c:otherwise>
                             </c:choose>

@@ -9,6 +9,11 @@ public class OrderedMenu {
     public OrderedMenu() {
     }
 
+    public OrderedMenu(int mId, int omamot) {
+        this.mId = mId;
+        this.omamot = omamot;
+    }
+
     public int getoId() {
         return oId;
     }

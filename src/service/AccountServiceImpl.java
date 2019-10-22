@@ -51,6 +51,15 @@ public class AccountServiceImpl implements AccountService{
         }
     }
 
+    //通过账号获取cId
+    public int getCidByAcot(Client client){
+        return clientDao.getCidByAcot(client);
+    }
+
+    public Client getClientInfo(Client client) {
+        return clientDao.getClientInfo(client);
+    }
+
     /***************************ClientLogin end***************************************************/
 
 

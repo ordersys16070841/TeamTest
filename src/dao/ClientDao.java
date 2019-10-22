@@ -2,9 +2,7 @@ package dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import pojo.Client;
-import pojo.Menu;
-import pojo.MenuClass;
+import pojo.*;
 
 import java.util.List;
 
@@ -17,6 +15,9 @@ public interface ClientDao {
      * @return
      */
     public int checkClientAcot(Client client);
+
+    public Client getClientInfo(Client client);
+
 
     /**
      * 检查客户账号是否重复
@@ -51,4 +52,25 @@ public interface ClientDao {
      */
     public int addMenuToOrder();
 
+    public List<Menu> getAllMenus();
+
+    public Menu getMenuNmeAPrice(int mId);
+
+    public int getMenuAmot(int mId);    //获取mId菜单的库存
+
+    public int getMaxOid();      //获取最大Oid值
+
+    public int getCidByAcot(Client client);   //通过账号获取cId
+
+    public List<Integer> getWaitersOnline();      //获取在线服务员的wId
+
+    public int generateOrder(Order order);      //生成订单，插入tb_order
+
+    public int generateOrderedMenu(OrderedMenu orderedMenu);    //生成已点菜单，插入tb_orderedMenu
+
+    public String getClientNameByCid(int cId);   //通过cId获取客户名
+
+    public Order getCurrentOrder(int cId);     //获取客户当前(即未完成)的订单
+
+    public List<OrderedMenu> getMenusByOid(int oId);      //根据订单号获取菜单
 }

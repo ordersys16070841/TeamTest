@@ -21,5 +21,5 @@ public interface BossService {
     public int checkMenuRepeat(Menu menu);
     public int addMenu(Menu menu);
     public List<Menu> getMenusInfo();
-    public int modifyMenu(Menu menu,Model model);
+    public int modifyMenu(Menu menu, Model model);
 }

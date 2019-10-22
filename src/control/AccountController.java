@@ -1,17 +1,22 @@
 package control;
 
+import net.sf.json.JSONObject;
 import net.sf.jsqlparser.statement.select.Wait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.Boss;
 import pojo.Client;
 import pojo.Waiter;
 import service.AccountService;
 import tools.MD5Util2;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 @Controller
 public class AccountController {
@@ -74,15 +79,60 @@ public class AccountController {
      * @return
      */
     @RequestMapping("/clientLogin")
-    public String clientLogin(Client client,Model model){
+    public String clientLogin(HttpSession session,Client client,Model model){
         client.setCpsd(MD5Util2.getStringMD5(client.getCpsd()));
         if(accountService.clientLogin(client,model)>0){
-            return "client/clientHome";
+            int cId=accountService.getCidByAcot(client);
+            session.setAttribute("cId",cId);
+            return "forward:clienthome";
         }else {
             model.addAttribute("loginMsg","登录失败，账号或密码错误");
             return "client/clientLogin";
         }
     }
+
+    @RequestMapping(value="/clientLogin.json",method= RequestMethod.POST)
+    public void getFromClient(HttpServletRequest request, HttpServletResponse response, Client client, Model model) {
+        response.setContentType("application/json;charset=utf-8");
+        PrintWriter out = null;
+        JSONObject json = new JSONObject();
+
+        try {
+            out = response.getWriter();
+            if (!"".equals(request.getParameter("cacot")) && !"".equals(request.getParameter("cpsd"))) {
+
+                String cacot = request.getParameter("cacot");
+                String cpsd = request.getParameter("cpsd");
+                client.setCacot(cacot);
+                client.setCpsd(cpsd);
+                System.out.println(cacot);
+                System.out.println(cpsd);
+                if (accountService.clientLogin(client, model) > 0) {
+                    client = accountService.getClientInfo(client);
+                    json.put("client", JSONObject.fromObject(client));
+                    System.out.println(json);
+                } else {
+                    json.put("client", null);
+                }
+
+                out.write(json.toString());
+            } else {
+                json.put("status", 0);
+                json.put("user", null);
+                out.write(json.toString());
+            }
+        } catch (Exception e) {
+            e.toString();
+            json.put("status", -1);
+            json.put("user", null);
+            out.write(json.toString());
+        } finally{
+            out.flush();
+            out.close();
+        }
+    }
+
+
 
 /***************************ClientLogin end***************************************************/
 

@@ -17,4 +17,7 @@ public interface AccountService {
     public int registerClient(Client client);
     public int checkWaiterAcotRepeat(Waiter waiter);
     public int registerWaiter(Waiter waiter);
+
+    public Client getClientInfo(Client client);
+    public int getCidByAcot(Client client);   //通过账号获取cId
 }
