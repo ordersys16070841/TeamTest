@@ -107,4 +107,14 @@ public class AccountServiceImpl implements AccountService{
 
     /***************************WaiterRegister end***************************************************/
 
+
+    /***************************WaiterLogout start***************************************************/
+
+    //更新服务员状态
+    public int waiterlogout(int wId){
+        return waiterDao.waiterlogout(wId);
+    }
+
+    /***************************WaiterLogout start***************************************************/
+
 }

@@ -45,9 +45,10 @@ public class AccountController {
      * @return
      */
     @RequestMapping("/bossLogin")
-    public String bossLogin(Boss boss, Model model){
+    public String bossLogin(Boss boss, Model model,HttpSession session){
         boss.setBpsd(MD5Util2.getStringMD5(boss.getBpsd()));
         if(accountService.bossLogin(boss,model)>0){
+            session.setAttribute("boss","boss");
             return "boss/bossHome";
         }else {
             model.addAttribute("loginMsg","登录失败，账号或密码错误");
@@ -239,5 +240,42 @@ public class AccountController {
     }
 
     /***************************WaiterRegister end***************************************************/
+
+
+
+    /***************************WaiterLogout start***************************************************/
+
+    @RequestMapping("/waiterLogout")
+    public String waiterLogout(HttpSession session){
+        int wId=(Integer)session.getAttribute("wId");
+        accountService.waiterlogout(wId);
+        session.removeAttribute("waiterName");
+        session.removeAttribute("wId");
+        return "waiter/waiterLogin";
+    }
+
+    /***************************WaiterLogout end***************************************************/
+
+
+    /***************************ClientLogout start***************************************************/
+
+    @RequestMapping("/clientLogout")
+    public String clientLogout(HttpSession session){
+        session.removeAttribute("cId");
+        return "client/clientLogin";
+    }
+
+    /***************************ClientLogout end***************************************************/
+
+
+    /***************************BossLogout start***************************************************/
+
+    @RequestMapping("/bossLogout")
+    public String bossLogout(HttpSession session){
+        session.removeAttribute("boss");
+        return "boss/bossLogin";
+    }
+
+    /***************************BossLogout end***************************************************/
 
 }

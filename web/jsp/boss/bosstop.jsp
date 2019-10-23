@@ -69,13 +69,12 @@
                     <div class="log_reg d-flex flex-row align-items-center justify-content-start">
                         <ul class="d-flex flex-row align-items-start justify-content-start navbar-nav">
                             <c:choose>
-                                <c:when test="${empty username}">
-                                    <li><a href="${pageContext.request.contextPath}/">登录</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">注册</a></li>
+                                <c:when test="${empty boss}">
+                                    <li><a href="${pageContext.request.contextPath}/bossLogin">登录</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="${pageContext.request.contextPath}/">Boss</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">注销</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/bossHome">Boss</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/bossLogout">注销</a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>

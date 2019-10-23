@@ -74,8 +74,8 @@
                                     <li><a href="${pageContext.request.contextPath}/toClientRegister">注册</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="${pageContext.request.contextPath}/">${clientName}</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/logout">注销</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/clienthome">${clientName}</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/clientLogout">注销</a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>

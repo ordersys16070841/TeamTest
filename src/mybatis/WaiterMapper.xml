@@ -45,4 +45,8 @@
     <update id="updateOrderStatus" parameterType="int">
         update tb_order set status=1 where oid=#{oId}
     </update>
+
+    <update id="waiterlogout" parameterType="int">
+        update tb_waiter set status=0 where wid=#{wId}
+    </update>
 </mapper>

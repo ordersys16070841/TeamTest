@@ -11,6 +11,7 @@ import pojo.Waiter;
 import service.BossService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,11 @@ public class BossController {
      * @return
      */
     @RequestMapping("/bossHome")
-    public String toBossHome(Model model){
+    public String toBossHome(HttpSession session, Model model){
+        if(session.getAttribute("boss")==null){
+            model.addAttribute("bossMsg","请先进行登录");
+            return "boss/bossLogin";
+        }
         return "boss/bossHome";
     }
 

@@ -21,4 +21,5 @@ public interface AccountService {
     public Client getClientInfo(Client client);
     public int getCidByAcot(Client client);   //通过账号获取cId
     public Waiter getWaterInfo(Waiter waiter);    //通过账号获取员工信息
+    public int waiterlogout(int wId);      //更新服务员状态
 }
