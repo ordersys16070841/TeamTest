@@ -1,10 +1,7 @@
 package service;
 
 import org.springframework.ui.Model;
-import pojo.Menu;
-import pojo.MenuClass;
-import pojo.Order;
-import pojo.OrderedMenu;
+import pojo.*;
 
 import java.util.List;
 
@@ -21,5 +18,5 @@ public interface ClientService {
     public int generateOrderedMenu(OrderedMenu orderedMenu);    //生成已点菜单，插入tb_orderedMenu
     public String getClientNameByCid(int cId);   //通过cId获取客户名
     public Order getCurrentOrder(int cId);     //获取客户当前(即未完成)的订单
-    public List<OrderedMenu> getMenusByOid(int oId);      //根据订单号获取菜单
+    public List<OrderCar> getMenusByOid(int oId);      //根据订单号获取菜单
 }

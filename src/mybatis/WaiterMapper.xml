@@ -20,5 +20,17 @@
          insert into tb_waiter (wacot,wpsd,wname) values(#{wacot},#{wpsd},#{wname})
     </insert>
 
+    <select id="getOrdersByWid" parameterType="int" resultType="pojo.Order">
+        select * from tb_order where wId=#{wId} and status=0
+    </select>
 
+    <select id="getWaterInfo" resultType="pojo.Waiter" parameterType="pojo.Waiter">
+        select * from tb_waiter where wacot=#{wacot}
+    </select>
+
+    <select id="getMenusByOid" parameterType="int" resultType="pojo.OrderCar">
+        select a.mId,a.mname,b.omamot,a.mprice,b.deliver
+	        from tb_menu as a LEFT JOIN tb_orderedmenu as b ON a.mid=b.mid
+		        where b.oid=#{oId}
+    </select>
 </mapper>

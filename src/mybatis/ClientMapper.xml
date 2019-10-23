@@ -68,8 +68,10 @@
         select * from tb_order where cId=#{cId} and status=0
     </select>
 
-    <select id="getMenusByOid" parameterType="int" resultType="pojo.OrderedMenu">
-        select * from tb_orderedmenu where oId=#{oId}
+    <select id="getMenusByOid" parameterType="int" resultType="pojo.OrderCar">
+        select a.mId,a.mname,b.omamot,a.mprice,b.deliver
+	        from tb_menu as a LEFT JOIN tb_orderedmenu as b ON a.mid=b.mid
+		        where b.oid=#{oId}
     </select>
 
 </mapper>

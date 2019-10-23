@@ -3,33 +3,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>用户注册</title>
+    <title>员工主页</title>
     <style>
-        .table td{
+        .table td {
             text-align: center;
-            vertical-align: middle!important;
+            vertical-align: middle !important;
         }
     </style>
 </head>
 <body style="background-color: #F5FFFA">
-<c:choose>
-    <c:when test="${empty waiterName}">
-        <jsp:forward page="${pageContext.request.contextPath}/toWaiterLogin">
-            <jsp:param name="loginMsg" value="请先进行登录" />
-        </jsp:forward>
-    </c:when>
-</c:choose>
-
-<jsp:include page=""></jsp:include>
+<jsp:include page="waitertop.jsp"></jsp:include>
 <div class="container">
-    <form action="register" method="post" enctype="multipart/form-data" class="form-horizontal"
-          style="margin-left: 10%;margin-right: 10%;margin-top: 7%;margin-bottom: 7%">
-        <table class="table table-striped table-hover">
-
-        </table>
-    </form>
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active" style="background-color: #FBFCFC;margin-left: 40px"><br>
+            <h2>待处理的订单</h2>
+            <table class="table table-hover table-striped table-bordered" style="text-align: center">
+                <tr>
+                    <td>序号</td>
+                    <td>订单号</td>
+                    <td>桌号</td>
+                    <td>时间</td>
+                    <td></td>
+                </tr>
+                <c:forEach items="${orderList}" var="order" varStatus="status">
+                    <tr>
+                        <td>${status.count}</td>
+                        <td>${order.getoId()}</td>
+                        <td>${order.getDeskId()}</td>
+                        <td>${order.getOdate()}</td>
+                        <td><a href="${pageContext.request.contextPath}/orderInfo?oId=${order.getoId()}">查看详情</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
 </div>
-
 
 
 </body>

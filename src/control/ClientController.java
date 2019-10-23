@@ -252,9 +252,8 @@ public class ClientController {
         int cId=(Integer) session.getAttribute("cId");
         Order order=clientService.getCurrentOrder(cId);
         model.addAttribute("order",order);
-        List<OrderedMenu> orderedMenuList=clientService.getMenusByOid(order.getoId());
-        List<OrderCar> orderCarList=new ArrayList<OrderCar>();
-        Iterator<OrderedMenu> orderedMenuIterator=orderedMenuList.iterator();
+        List<OrderCar> orderCarList=clientService.getMenusByOid(order.getoId());
+        model.addAttribute("orderCarList",orderCarList);
         return "client/myOrder";
     }
 

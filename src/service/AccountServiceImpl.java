@@ -69,6 +69,10 @@ public class AccountServiceImpl implements AccountService{
         return waiterDao.updateStatus(waiter);
     }
 
+    //通过账号获取员工信息
+    public Waiter getWaterInfo(Waiter waiter){
+        return waiterDao.getWaterInfo(waiter);
+    }
 
     public int waiterLogin(Waiter waiter){
         return waiterDao.checkWaiterAcot(waiter);

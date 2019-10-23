@@ -71,12 +71,32 @@
                             <td colspan="7"><h4>订单内容</h4></td>
                         </tr>
                         <tr>
+                            <td>序号</td>
                             <td>菜号</td>
-                            <td>菜名</td>
+                            <td colspan="2">菜名</td>
                             <td>数量</td>
                             <td>单价</td>
                             <td>已上菜</td>
                         </tr>
+                        <c:forEach items="${orderCarList}" var="orderCar" varStatus="status">
+                            <tr>
+                                <td>${status.count}</td>
+                                <td>${orderCar.getmId()}</td>
+                                <td colspan="2">${orderCar.getMname()}</td>
+                                <td>${orderCar.getOmamot()}</td>
+                                <td>${orderCar.getMprice()}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${orderCar.getDeliver() == 0}">
+                                            未上菜
+                                        </c:when>
+                                        <c:when test="${orderCar.getDeliver() == 1}">
+                                            已上菜
+                                        </c:when>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </c:otherwise>
             </c:choose>

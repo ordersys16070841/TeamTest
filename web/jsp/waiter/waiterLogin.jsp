@@ -23,6 +23,13 @@
     </center>
 </div>
 <div class="container">
+    <div>
+        <center>
+            <h2 style="margin-top: 50px;color: red">${waiterhomeMsg}</h2>
+        </center>
+
+    </div>
+
     <form action="waiterLogin" method="post" class="form-horizontal"
           style="margin-left: 10%;margin-right: 10%;margin-top: 7%;margin-bottom: 7%">
         <table class="table table-striped table-hover">

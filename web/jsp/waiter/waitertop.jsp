@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
@@ -32,11 +33,11 @@
     <script src="${pageContext.request.contextPath}/static/plugins/scrollTo/jquery.scrollTo.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/custom.js"></script>
     <script type="text/javascript">
-            $(document).ready(function(){
-                var y = document.getElementById("na");
-                y = y.childNodes[idf];
-                $(y).addClass("active");
-            });
+        $(document).ready(function(){
+            var y = document.getElementById("na");
+            y = y.childNodes[idf];
+            $(y).addClass("active");
+        });
     </script>
 
 </head>
@@ -51,17 +52,17 @@
                     <div class="logo">
                         <a href="#" class="d-flex flex-row align-items-end justify-content-start">
                             <span class="logo_bars d-flex flex-row align-items-end justify-content-between"><span></span><span></span><span></span><span></span><span></span></span>
-                            <span class="logo_text">订餐系统之店长</span>
+                            <span class="logo_text">订餐系统之员工</span>
                         </a>
                     </div>
 
                     <!-- Main Navigation -->
                     <nav class="main_nav">
                         <ul class="d-flex flex-row align-items-center justify-content-start" id="na">
-                            <li><a href="${pageContext.request.contextPath}/bossHome" >首页</a></li>
-                            <li><a href="${pageContext.request.contextPath}/rankinglist">历史账单</a></li>
-                            <li><a href="${pageContext.request.contextPath}/toSetMenu">菜单</a></li>
-                            <li><a href="${pageContext.request.contextPath}/toAuthenti">认证账号</a></li>
+                            <li><a href="${pageContext.request.contextPath}/toWaiterHome" >首页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/">我处理的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/"></a></li>
+                            <li><a href="${pageContext.request.contextPath}/"></a></li>
                         </ul>
                     </nav>
 
@@ -69,13 +70,13 @@
                     <div class="log_reg d-flex flex-row align-items-center justify-content-start">
                         <ul class="d-flex flex-row align-items-start justify-content-start navbar-nav">
                             <c:choose>
-                                <c:when test="${empty username}">
-                                    <li><a href="${pageContext.request.contextPath}/">登录</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">注册</a></li>
+                                <c:when test="${empty waiterName}">
+                                    <li><a href="${pageContext.request.contextPath}/toWaiterLogin">登录</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/toWaiterRegister">注册</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="${pageContext.request.contextPath}/">Boss</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/">注销</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/">${waiterName}</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/logout">注销</a></li>
                                 </c:otherwise>
                             </c:choose>
                         </ul>

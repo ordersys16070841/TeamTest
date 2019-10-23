@@ -157,11 +157,14 @@ public class AccountController {
      */
     @RequestMapping("/waiterLogin")
     public String waiterLogin(Waiter waiter,Model model, HttpSession session){
+        waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
         if(accountService.waiterLogin(waiter)>0){
             waiter.setWstatus(2);
             accountService.updateStatus(waiter);
+            waiter=accountService.getWaterInfo(waiter);
             session.setAttribute("waiterName",waiter.getWname());
-            return "forwarrd:toWaiterHome";
+            session.setAttribute("wId",waiter.getWid());
+            return "forward:toWaiterHome";
         }else{
             model.addAttribute("loginMsg","登录失败，账号或密码错误");
             return "waiter/waiterLogin";

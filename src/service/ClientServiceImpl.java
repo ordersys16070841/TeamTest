@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import pojo.Menu;
-import pojo.MenuClass;
-import pojo.Order;
-import pojo.OrderedMenu;
+import pojo.*;
 
 import java.util.List;
 
@@ -89,7 +86,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     //根据订单号获取菜单
-    public List<OrderedMenu> getMenusByOid(int oId){
+    public List<OrderCar> getMenusByOid(int oId){
         return clientDao.getMenusByOid(oId);
     }
 
