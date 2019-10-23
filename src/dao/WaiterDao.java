@@ -2,10 +2,7 @@ package dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import pojo.Client;
-import pojo.Order;
-import pojo.OrderCar;
-import pojo.Waiter;
+import pojo.*;
 
 import java.util.List;
 
@@ -45,5 +42,11 @@ public interface WaiterDao {
     public Waiter getWaterInfo(Waiter waiter);    //通过账号获取员工信息
 
     public List<OrderCar> getMenusByOid(int oId);      //根据订单号获取菜单
+
+    public int servedishes(OrderedMenu orderedMenu);     //上菜，更新tb_orderedmenu表的deliver
+
+    public int checkOrderedMenu(int oId);    //查看tb_orderedmenu表中oId对应的未上菜的数量
+
+    public int updateOrderStatus(int oId);     //更新订单的状态
 
 }

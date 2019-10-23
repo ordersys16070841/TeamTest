@@ -42,7 +42,7 @@
                                 </c:when>
                             </c:choose>
                         </td>
-                        <td><a href="${pageContext.request.contextPath}/servedishes">上菜</a></td>
+                        <td><a href="${pageContext.request.contextPath}/servedishes?oId=${oId}&mId=${orderCar.getmId()}">上菜</a></td>
                     </tr>
                 </c:forEach>
             </table>
