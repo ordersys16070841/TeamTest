@@ -22,4 +22,5 @@ public interface BossService {
     public int addMenu(Menu menu);
     public List<Menu> getMenusInfo();
     public int modifyMenu(Menu menu, Model model);
+    public List<Waiter> getWaiterInfos();   //获取已被认证的员工信息
 }

@@ -230,6 +230,11 @@ public class ClientController {
                 orderedMenu.setOmamot(orderCar.getOmamot());
                 orderedMenu.setDeliver(0);   //0表示未分配
                 clientService.generateOrderedMenu(orderedMenu);   //将OrderedMenu插入数据库
+                Menu menu=new Menu();
+                menu.setmId(orderCar.getmId());
+                menu.setMamot(orderCar.getOmamot());
+                System.out.println(menu.getmId()+"   "+menu.getMamot());
+                clientService.updateMenuAmot(menu);
             }
             model.addAttribute("payMsg","生成订单成功");
             session.removeAttribute("orderCarList");

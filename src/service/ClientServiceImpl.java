@@ -75,6 +75,11 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.generateOrderedMenu(orderedMenu);
     }
 
+    //更新菜的库存
+    public int updateMenuAmot(Menu menu){
+        return clientDao.updateMenuAmot(menu);
+    }
+
     /***************************客户支付订单 end***************************************************/
 
 

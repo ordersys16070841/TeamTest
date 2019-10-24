@@ -5,11 +5,11 @@
 
 
     <select id="checkWaiterAcot" parameterType="pojo.Waiter" resultType="Integer">
-        select count(*) from tb_waiter where wacot=#{wacot} and wpsd=#{wpsd}
+        select count(*) from tb_waiter where wacot=#{wacot} and wpsd=#{wpsd} and wstatus!=0
     </select>
 
     <update id="updateStatus" parameterType="pojo.Waiter">
-        update tb_waiter set wstatus = 1 where wacot=#{wacot} ;
+        update tb_waiter set wstatus = 2 where wacot=#{wacot} ;
     </update>
 
     <select id="checkWaiterAcotRepeat" parameterType="pojo.Waiter" resultType="Integer">
@@ -47,6 +47,6 @@
     </update>
 
     <update id="waiterlogout" parameterType="int">
-        update tb_waiter set status=0 where wid=#{wId}
+        update tb_waiter set status=1 where wid=#{wId}
     </update>
 </mapper>

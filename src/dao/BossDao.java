@@ -78,4 +78,6 @@ public interface BossDao {
      * @return
      */
     public int modifyMenu(Menu menu);
+
+    public List<Waiter> getWaiterInfos();   //获取已被认证的员工信息
 }

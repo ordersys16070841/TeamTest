@@ -74,5 +74,5 @@ public interface ClientDao {
 
     public List<OrderCar> getMenusByOid(int oId);      //根据订单号获取菜单
 
-
+    public int updateMenuAmot(Menu menu);      //更新菜的库存
 }

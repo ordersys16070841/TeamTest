@@ -45,6 +45,10 @@
     <update id="modifyMenu" parameterType="pojo.Menu">
         update tb_menu set mcost=#{mcost},mprice=#{mprice},mamot=#{mamot} where mId=#{mId}
     </update>
+
+    <select id="getWaiterInfos" resultType="pojo.Waiter">
+        select * from tb_waiter where wstatus!=0
+    </select>
 </mapper>
 
 

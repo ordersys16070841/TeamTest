@@ -59,9 +59,9 @@
                     <nav class="main_nav">
                         <ul class="d-flex flex-row align-items-center justify-content-start" id="na">
                             <li><a href="${pageContext.request.contextPath}/bossHome" >首页</a></li>
-                            <li><a href="${pageContext.request.contextPath}/rankinglist">历史账单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/">历史账单</a></li>
                             <li><a href="${pageContext.request.contextPath}/toSetMenu">菜单</a></li>
-                            <li><a href="${pageContext.request.contextPath}/toAuthenti">认证账号</a></li>
+                            <li><a href="${pageContext.request.contextPath}/toAuthenti">员工</a></li>
                         </ul>
                     </nav>
 

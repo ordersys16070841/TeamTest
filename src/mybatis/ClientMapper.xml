@@ -74,4 +74,7 @@
 		        where b.oid=#{oId}
     </select>
 
+    <update id="updateMenuAmot" parameterType="pojo.Menu">
+        update tb_menu set mamot = mamot - #{mamot} where mId = #{mId}
+    </update>
 </mapper>

@@ -167,7 +167,7 @@ public class AccountController {
             session.setAttribute("wId",waiter.getWid());
             return "forward:toWaiterHome";
         }else{
-            model.addAttribute("loginMsg","登录失败，账号或密码错误");
+            model.addAttribute("loginMsg","登录失败，账号密码错误或账号未被店长认证");
             return "waiter/waiterLogin";
         }
     }

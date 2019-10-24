@@ -24,6 +24,7 @@ public class BossServiceImpl implements BossService {
 
     /***************************认证员工 start***************************************************/
 
+    //获取未被认证的员工信息    区分  获取已被认证的员工信息 的  getWaiterInfos
     public List<Waiter> getWaitersInfo(){
         return bossDao.getWaitersInfo();
     }
@@ -32,8 +33,17 @@ public class BossServiceImpl implements BossService {
         return bossDao.authentiWaiter(waiter);
     }
 
-    /***************************认证员工 start***************************************************/
+    /***************************认证员工 end***************************************************/
 
+
+    /***************************查看员工信息 start***************************************************/
+
+    //获取已被认证的员工信息
+    public List<Waiter> getWaiterInfos(){
+        return bossDao.getWaiterInfos();
+    }
+
+    /***************************查看员工信息 start***************************************************/
 
 
     /***************************打开设置菜单页面 start***************************************************/

@@ -70,6 +70,17 @@ public class BossController {
     /***************************认证员工 end***************************************************/
 
 
+    /***************************查看员工 start***************************************************/
+
+    @RequestMapping("myWaiters")
+    public String myWaiters(Model model){
+        List<Waiter> waiterList=bossService.getWaiterInfos();
+        model.addAttribute("waiterList",waiterList);
+        return "boss/waiterInfo";
+    }
+
+    /***************************查看员工 end***************************************************/
+
 
 /***************************打开设置菜单页面 start***************************************************/
 
