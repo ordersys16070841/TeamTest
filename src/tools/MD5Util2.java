@@ -20,20 +20,7 @@ public class MD5Util2 {
             'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static void main(String[] args) {
-        List<Integer> integerList=new ArrayList<Integer>();
-        integerList.add(1);
-        integerList.add(2);
-        Iterator<Integer> iterator=integerList.iterator();
-        while (iterator.hasNext()){
-            Integer integer=iterator.next();
-            if(integer==1){
-                integer=3;
-                integerList.set(0,integer);
-            }
-
-        }
-        System.out.println(integerList);
-        System.out.println(integerList.get(0));
+        System.out.println(MD5Util2.getStringMD5("123456asd"));
     }
 
     /**

@@ -197,10 +197,14 @@ public class AccountController {
         if(accountService.checkClientAcotRepeat(client)>0){
             model.addAttribute("registerMsg","注册失败，该账号已被注册");
             return "client/clientRegister";
-        }else{
+        }else if(client.getCacot().matches("^[^0-9][\\w_]{4,10}$")&&
+                client.getCpsd().matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$")){
             client.setCpsd(MD5Util2.getStringMD5(client.getCpsd()));
             accountService.registerClient(client);
-            model.addAttribute("registerMsg","注册成功");
+            model.addAttribute("registerMsg","注册成功,<a href=\"toClientLogin\">登录传送门</a>");
+            return "client/clientRegister";
+        }else{
+            model.addAttribute("registerMsg","注册失败，账号或密码设置过于简单");
             return "client/clientRegister";
         }
     }
@@ -231,10 +235,14 @@ public class AccountController {
         if(accountService.checkWaiterAcotRepeat(waiter)>0){
             model.addAttribute("registerMsg","注册失败，该账号已被注册");
             return "waiter/waiterRegister";
-        }else{
+        }else if(waiter.getWacot().matches("^[^0-9][\\w_]{4,10}$")&&
+                waiter.getWpsd().matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$")){
             waiter.setWpsd(MD5Util2.getStringMD5(waiter.getWpsd()));
             accountService.registerWaiter(waiter);
             model.addAttribute("registerMsg","注册信息已提交给店长，等待店长验证");
+            return "waiter/waiterRegister";
+        }else {
+            model.addAttribute("registerMsg","注册失败，账号或密码设置过于简单");
             return "waiter/waiterRegister";
         }
     }

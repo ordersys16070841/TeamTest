@@ -76,7 +76,7 @@
                             <td colspan="2">菜名</td>
                             <td>数量</td>
                             <td>单价</td>
-                            <td>已上菜</td>
+                            <td>上菜情况</td>
                         </tr>
                         <c:forEach items="${orderCarList}" var="orderCar" varStatus="status">
                             <tr>

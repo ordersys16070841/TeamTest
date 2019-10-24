@@ -60,7 +60,7 @@
                     <nav class="main_nav">
                         <ul class="d-flex flex-row align-items-center justify-content-start" id="na">
                             <li><a href="${pageContext.request.contextPath}/toWaiterHome" >首页</a></li>
-                            <li><a href="${pageContext.request.contextPath}/">我处理的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/checkOrders">我处理的订单</a></li>
                             <li><a href="${pageContext.request.contextPath}/"></a></li>
                             <li><a href="${pageContext.request.contextPath}/"></a></li>
                         </ul>

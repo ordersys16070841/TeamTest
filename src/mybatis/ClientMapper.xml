@@ -48,7 +48,7 @@
     </select>
 
     <select id="getWaitersOnline" resultType="Integer">
-        select wId from tb_waiter where wstatus=1
+        select wId from tb_waiter where wstatus=2
     </select>
 
     <insert id="generateOrder" parameterType="pojo.Order">

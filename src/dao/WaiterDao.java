@@ -50,4 +50,6 @@ public interface WaiterDao {
     public int updateOrderStatus(int oId);     //更新订单的状态
 
     public int waiterlogout(int wId);      //更新服务员状态
+
+    public List<Order> checkOrders(int wId);      //查看wId员工处理的历史订单
 }

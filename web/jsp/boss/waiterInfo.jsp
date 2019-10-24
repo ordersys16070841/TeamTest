@@ -48,6 +48,7 @@
                             <c:when test="${waiter.getWstatus()==2}">
                                 <p style="color: #1fda1f">在线</p>
                             </c:when>
+
                         </c:choose>
                     </td>
                 </tr>

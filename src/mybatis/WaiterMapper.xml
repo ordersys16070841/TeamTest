@@ -49,4 +49,8 @@
     <update id="waiterlogout" parameterType="int">
         update tb_waiter set status=1 where wid=#{wId}
     </update>
+
+    <select id="checkOrders" parameterType="int" resultType="pojo.Order">
+        select * from tb_order where wId=#{wId} and status=1
+    </select>
 </mapper>

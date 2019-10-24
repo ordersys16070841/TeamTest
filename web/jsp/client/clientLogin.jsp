@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <a href="toForgetPass" target="_blank">还没有账号？请注册</a>
+                    <a href="${pageContext.request.contextPath}/toClientRegister">还没有账号？请注册</a>
                 </td>
             </tr>
             <tr>
