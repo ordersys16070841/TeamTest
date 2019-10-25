@@ -38,7 +38,7 @@
                                     未上菜
                                 </c:when>
                                 <c:when test="${orderCar.getDeliver() == 1}">
-                                    已上菜
+                                    <p style="color: #49f349">已上菜</p>
                                 </c:when>
                             </c:choose>
                         </td>

@@ -270,6 +270,7 @@ public class AccountController {
     @RequestMapping("/clientLogout")
     public String clientLogout(HttpSession session){
         session.removeAttribute("cId");
+        session.removeAttribute("clientName");
         return "client/clientLogin";
     }
 
