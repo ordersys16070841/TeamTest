@@ -52,7 +52,8 @@
                                 <td colspan="2">桌号：</td>
                                 <td>
                                     <div style="width: 20px">
-                                        <input type="text" name="deskId" class="form-control" style="width: auto" placeholder="桌号" />
+                                        <input type="text" name="deskId" class="form-control" style="width: auto" placeholder="桌号范围 1~150"
+                                               onchange="if(/\D/.test(this.value)){alert('请正确输入桌号');this.value='';}"/>
                                     </div>
 
                                 </td>

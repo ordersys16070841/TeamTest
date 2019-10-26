@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>设置菜单</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 </head>
 <body style="background-color: #F5FFFA">
 <jsp:include page="bosstop.jsp"></jsp:include>
@@ -33,7 +34,8 @@
                     <thead><h3>添加菜单类别</h3></thead>
                     <tr>
                         <td>菜单类别</td>
-                        <td><input type="text" class="form-control" placeholder="菜单类别" name="className"/></td>
+                        <td><input type="text" class="form-control" placeholder="菜单类别" name="className"
+                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('只能输入文字');this.value='';}"/></td>
                     </tr>
                     <tr>
                         <td colspan="2">${menuClassMsg}</td>
@@ -51,15 +53,16 @@
                     <thead><h3>添加菜单</h3></thead>
                     <tr>
                         <td>菜单名字</td>
-                        <td><input type="text" class="form-control" placeholder="菜单名字" name="mname"/></td>
+                        <td><input type="text" class="form-control" placeholder="菜单名字" name="mname"
+                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('只能输入文字');this.value='';}" /></td>
                     </tr>
                     <tr>
                         <td>菜单成本</td>
-                        <td><input type="text" class="form-control" placeholder="菜单成本" name="mcost"/></td>
+                        <td><input type="text" id="mcost" class="form-control price" placeholder="菜单成本" name="mcost"/></td>
                     </tr>
                     <tr>
                         <td>菜单价格</td>
-                        <td><input type="text" class="form-control" placeholder="菜单价格" name="mprice"/></td>
+                        <td><input type="text" id="mprice" class="form-control price" placeholder="菜单价格" name="mprice"/></td>
                     </tr>
                     <tr>
                         <td>菜单分类</td>
@@ -87,4 +90,5 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/boss/boss.js"></script>
 </html>

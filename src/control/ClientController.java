@@ -189,11 +189,16 @@ public class ClientController {
             model.addAttribute("payMsg","支付订单失败，请登录账号");
             return "forward:toOrderCar";
         }
-        if(request.getParameter("deskId")==""){
-            model.addAttribute("payMsg","支付订单失败，请填写桌号");
+        String desk=request.getParameter("deskId");
+        if(!desk.matches("^[1-9]{1,1}[0-9]{0,2}$")||Integer.parseInt(desk)<=0&&Integer.parseInt(desk)>150){
+            model.addAttribute("payMsg","支付订单失败，请填写正确桌号");
             return "forward:toOrderCar";
         }
         int deskId=Integer.parseInt(request.getParameter("deskId"));
+        if(clientService.checkDeskId(deskId)>0){
+            model.addAttribute("payMsg","支付订单失败，该桌号已被占用，请选择别的桌号");
+            return "forward:toOrderCar";
+        }
         List<OrderCar> orderCarList=(List<OrderCar>) session.getAttribute("orderCarList");
 
         int cId=(Integer) session.getAttribute("cId");      //设置订单Order  时间在sql语句中弄
@@ -233,7 +238,6 @@ public class ClientController {
                 Menu menu=new Menu();
                 menu.setmId(orderCar.getmId());
                 menu.setMamot(orderCar.getOmamot());
-                System.out.println(menu.getmId()+"   "+menu.getMamot());
                 clientService.updateMenuAmot(menu);
             }
             model.addAttribute("payMsg","生成订单成功");

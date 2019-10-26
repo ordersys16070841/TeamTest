@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>查看菜单</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 </head>
 <body style="background-color: #F5FFFA">
 <jsp:include page="bosstop.jsp"></jsp:include>
@@ -48,9 +49,10 @@
                             <td>${status.count}</td>
                             <td>${menu.getMname()}</td>
                             <td>${menu.getClassName()}</td>
-                            <td><input type="text" class="form-control" value="${menu.getMcost()}" name="mcost"/></td>
-                            <td><input type="text" class="form-control" value="${menu.getMprice()}" name="mprice"/></td>
-                            <td><input type="text" class="form-control" value="${menu.getMamot()}" name="mamot"/></td>
+                            <td><input type="text" class="form-control price" value="${menu.getMcost()}" name="mcost"/></td>
+                            <td><input type="text" class="form-control price" value="${menu.getMprice()}" name="mprice"/></td>
+                            <td><input type="text" class="form-control" value="${menu.getMamot()}" name="mamot"
+                                       onchange="if(/\D/.test(this.value)){alert('请正确输入库存');this.value='';}"/></td>
                             <td>
                                 <button type="submit" class="btn btn-outline-primary">修改</button>
                             </td>
@@ -63,4 +65,5 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/boss/boss.js"></script>
 </html>

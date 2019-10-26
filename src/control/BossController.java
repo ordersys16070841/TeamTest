@@ -109,6 +109,10 @@ public class BossController {
      */
     @RequestMapping("addMenuClass")
     public String addMenuClass(MenuClass menuClass, Model model){
+        if(menuClass.getClassName()==""||menuClass.getClassName().length()>20){
+            model.addAttribute("menuClassMsg","添加失败，请输入大于0小于20个字符的菜类");
+            return "forward:toSetMenu";
+        }
         if(bossService.checkMenuClassRepeat(menuClass)>0){
             model.addAttribute("menuClassMsg","该菜单类别已存在，无需再添加");
             return "forward:toSetMenu";
@@ -132,6 +136,14 @@ public class BossController {
      */
     @RequestMapping("addMenu")
     public String addMenu(Menu menu, Model model){
+        if(menu.getMname()==""||menu.getMname().length()>20){
+            model.addAttribute("addMenuMsg","添加失败，请输入大于0小于20个字符的菜名");
+            return "forward:toSetMenu";
+        }
+        if(menu.getMcost()<=0||menu.getMcost()>1000){
+            model.addAttribute("addMenuMsg","添加失败，请输入");
+            return "forward:toSetMenu";
+        }
         if(bossService.checkMenuRepeat(menu)>0){
             model.addAttribute("addMenuMsg","该菜单已存在，无需再添加");
             return "forward:toSetMenu";

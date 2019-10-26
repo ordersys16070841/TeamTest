@@ -80,6 +80,11 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.updateMenuAmot(menu);
     }
 
+    //检查deskId桌是否被占用
+    public int checkDeskId(int deskId){
+        return clientDao.checkDeskId(deskId);
+    }
+
     /***************************客户支付订单 end***************************************************/
 
 

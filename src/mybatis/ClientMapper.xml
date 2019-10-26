@@ -77,4 +77,8 @@
     <update id="updateMenuAmot" parameterType="pojo.Menu">
         update tb_menu set mamot = mamot - #{mamot} where mId = #{mId}
     </update>
+
+    <select id="checkDeskId" parameterType="int" resultType="Integer">
+        select count(*) from tb_order where status=0 and deskid=#{deskId}
+    </select>
 </mapper>
