@@ -35,7 +35,7 @@
                     <tr>
                         <td>菜单类别</td>
                         <td><input type="text" class="form-control" placeholder="菜单类别" name="className"
-                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('只能输入文字');this.value='';}"/></td>
+                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('请正确输入菜单类别');this.value='';}"/></td>
                     </tr>
                     <tr>
                         <td colspan="2">${menuClassMsg}</td>
@@ -54,15 +54,15 @@
                     <tr>
                         <td>菜单名字</td>
                         <td><input type="text" class="form-control" placeholder="菜单名字" name="mname"
-                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('只能输入文字');this.value='';}" /></td>
+                                   onchange="if(/[^\u4e00-\u9fa5]/g.test(this.value)){alert('请正确输入菜单名字');this.value='';}" /></td>
                     </tr>
                     <tr>
                         <td>菜单成本</td>
-                        <td><input type="text" id="mcost" class="form-control price" placeholder="菜单成本" name="mcost"/></td>
+                        <td><input type="text" class="form-control price" placeholder="菜单成本" name="mcost"/></td>
                     </tr>
                     <tr>
                         <td>菜单价格</td>
-                        <td><input type="text" id="mprice" class="form-control price" placeholder="菜单价格" name="mprice"/></td>
+                        <td><input type="text" class="form-control price" placeholder="菜单价格" name="mprice"/></td>
                     </tr>
                     <tr>
                         <td>菜单分类</td>

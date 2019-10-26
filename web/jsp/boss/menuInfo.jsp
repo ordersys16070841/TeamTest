@@ -32,6 +32,7 @@
 
             <table class="table table-hover table-striped table-bordered" style="text-align: center">
                 <thead><h3>总菜单</h3></thead>
+                <tr><td colspan="7">${menuInfoMsg}</td></tr>
                 <tr>
                     <td>序号</td>
                     <td>菜名</td>

@@ -48,9 +48,6 @@
                                     <c:when test="${order.getPay() == 3}">
                                         现金支付
                                     </c:when>
-                                    <c:otherwise>
-                                        其它
-                                    </c:otherwise>
                                 </c:choose>
                             </td>
                             <td>${order.getOdate()}</td>

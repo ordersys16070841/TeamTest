@@ -260,6 +260,9 @@ public class ClientController {
         }
         int cId=(Integer) session.getAttribute("cId");
         Order order=clientService.getCurrentOrder(cId);
+        if(order==null){
+            return "client/myOrder";
+        }
         model.addAttribute("order",order);
         List<OrderCar> orderCarList=clientService.getMenusByOid(order.getoId());
         model.addAttribute("orderCarList",orderCarList);

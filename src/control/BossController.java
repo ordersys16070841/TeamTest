@@ -141,7 +141,11 @@ public class BossController {
             return "forward:toSetMenu";
         }
         if(menu.getMcost()<=0||menu.getMcost()>1000){
-            model.addAttribute("addMenuMsg","添加失败，请输入");
+            model.addAttribute("addMenuMsg","添加失败，请输入0~1000的成本价");
+            return "forward:toSetMenu";
+        }
+        if(menu.getMprice()<0||menu.getMprice()>1000){
+            model.addAttribute("addMenuMsg","添加失败，请输入0~1000的价格");
             return "forward:toSetMenu";
         }
         if(bossService.checkMenuRepeat(menu)>0){
@@ -184,7 +188,20 @@ public class BossController {
      */
     @RequestMapping("modifyMenu")
     public String modifyMenu(Menu menu,Model model){
+        if(menu.getMcost()<=0||menu.getMcost()>1000){
+            model.addAttribute("menuInfoMsg","修改失败，请输入0~1000的成本价");
+            return "forward:toMenusInfo";
+        }
+        if(menu.getMprice()<0||menu.getMprice()>1000){
+            model.addAttribute("menuInfoMsg","修改失败，请输入0~1000的价格");
+            return "forward:toMenusInfo";
+        }
+        if(menu.getMamot()<0||menu.getMamot()>1000){
+            model.addAttribute("menuInfoMsg","修改失败，请输入0~1000的库存数");
+            return "forward:toMenusInfo";
+        }
         bossService.modifyMenu(menu,model);
+        model.addAttribute("menuInfoMsg","修改成功");
         return "forward:toMenusInfo";
     }
 
