@@ -1,6 +1,8 @@
 package pojo;
 
-
+/**
+ * 购物车
+ */
 public class OrderCar {
     private int mId;
     private String mname;

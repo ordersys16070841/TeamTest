@@ -9,7 +9,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/ordersys?characterEncoding=utf8&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true" />
         <property name="username" value="root" />
-        <property name="password" value="wakie" />
+        <property name="password" value="111" />
         <property name="maxTotal" value="30" />
         <property name="maxIdle" value="10" />
         <property name="initialSize" value="5" />

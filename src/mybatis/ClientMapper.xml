@@ -28,7 +28,7 @@
     </select>
 
     <select id="getAllMenus" resultType="pojo.Menu">
-        select * from tb_menu
+        select mId,mname,tb_menu.mclass,mcost,mprice,mamot,className from tb_menu left join tb_class tc on tb_menu.mclass = tc.mclass
     </select>
 
     <select id="getMenuNmeAPrice" parameterType="int" resultType="pojo.Menu">
@@ -72,6 +72,14 @@
         select a.mId,a.mname,b.omamot,a.mprice,b.deliver
 	        from tb_menu as a LEFT JOIN tb_orderedmenu as b ON a.mid=b.mid
 		        where b.oid=#{oId}
+    </select>
+
+    <select id="getOrderById" parameterType="int" resultType="pojo.Order">
+        select * from  tb_order where oId=#{oId}
+    </select>
+
+    <select id="getAllOrdersById" parameterType="int" resultType="pojo.Order">
+        select * from tb_order where cId=#{cId}
     </select>
 
 </mapper>

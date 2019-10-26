@@ -91,5 +91,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     /***************************打开我的订单页面 end***************************************************/
+    public Order getOrderById(int oid) {
+        return clientDao.getOrderById(oid);
+    }
+
+    public List<Order> getAllOrdersById(int cId) {
+        return clientDao.getAllOrdersById(cId);
+    }
 
 }

@@ -5,11 +5,11 @@
 
 
     <select id="checkWaiterAcot" parameterType="pojo.Waiter" resultType="Integer">
-        select count(*) from tb_waiter where wacot=#{wacot} and wpsd=#{wpsd}
+        select count(*) from tb_waiter where wacot=#{wacot} and wpsd=#{wpsd} and wstatus!=0
     </select>
 
     <update id="updateStatus" parameterType="pojo.Waiter">
-        update tb_waiter set wstatus = 1 where wacot=#{wacot} ;
+        update tb_waiter set wstatus = 2 where wacot=#{wacot} ;
     </update>
 
     <select id="checkWaiterAcotRepeat" parameterType="pojo.Waiter" resultType="Integer">
@@ -32,5 +32,25 @@
         select a.mId,a.mname,b.omamot,a.mprice,b.deliver
 	        from tb_menu as a LEFT JOIN tb_orderedmenu as b ON a.mid=b.mid
 		        where b.oid=#{oId}
+    </select>
+
+    <update id="servedishes" parameterType="pojo.OrderedMenu">
+        update tb_orderedmenu set deliver=1 where oid=#{oId} and mid=#{mId}
+    </update>
+
+    <select id="checkOrderedMenu" parameterType="int" resultType="Integer">
+        select count(*) from tb_orderedmenu where oid=#{oId} and deliver=0
+    </select>
+
+    <update id="updateOrderStatus" parameterType="int">
+        update tb_order set status=1 where oid=#{oId}
+    </update>
+
+    <update id="waiterlogout" parameterType="int">
+        update tb_waiter set status=1 where wid=#{wId}
+    </update>
+
+    <select id="checkOrders" parameterType="int" resultType="pojo.Order">
+        select * from tb_order where wId=#{wId} and status=1
     </select>
 </mapper>

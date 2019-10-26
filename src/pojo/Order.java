@@ -2,15 +2,16 @@ package pojo;
 
 import java.util.Date;
 
+
 public class Order {
-    private int oId;
-    private int cId;
-    private int wId;
-    private int deskId;
-    private double total;
-    private int pay;
-    private int status;
-    private Date odate;
+    private int oId;                    //  订单编号
+    private int cId;                    //  客户（用户）编号
+    private int wId;                    //  接单服务员编号
+    private int deskId;                 //  餐桌号
+    private double total;               //  总价
+    private int pay;                    //  支付方式
+    private int status;                 //  完成状况
+    private Date odate;                 //  创建时间
 
     public Order() {
     }

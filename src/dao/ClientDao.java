@@ -72,7 +72,12 @@ public interface ClientDao {
 
     public Order getCurrentOrder(int cId);     //获取客户当前(即未完成)的订单
 
+
+
+    Order getOrderById(int oid);
     public List<OrderCar> getMenusByOid(int oId);      //根据订单号获取菜单
+
+    public List<Order> getAllOrdersById(int cId);
 
 
 }

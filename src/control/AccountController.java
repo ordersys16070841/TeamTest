@@ -1,5 +1,6 @@
 package control;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.jsqlparser.statement.select.Wait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pojo.Boss;
-import pojo.Client;
-import pojo.Waiter;
+import pojo.*;
 import service.AccountService;
 import tools.MD5Util2;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -118,13 +119,13 @@ public class AccountController {
                 out.write(json.toString());
             } else {
                 json.put("status", 0);
-                json.put("user", null);
+                json.put("client", null);
                 out.write(json.toString());
             }
         } catch (Exception e) {
             e.toString();
             json.put("status", -1);
-            json.put("user", null);
+            json.put("client", null);
             out.write(json.toString());
         } finally{
             out.flush();
@@ -203,6 +204,38 @@ public class AccountController {
             return "client/clientRegister";
         }
     }
+
+    @RequestMapping(value = "/clientRegister.json", method = RequestMethod.POST)
+    public void clientRegister(HttpServletRequest request, HttpServletResponse response, Model model) {
+        response.setContentType("application/json;charset=utf-8");
+        PrintWriter out = null;
+        String account = request.getParameter("cacot");
+        String name = request.getParameter("cname");
+        String password = request.getParameter("cpsd");
+        Client client = new Client();
+        client.setCacot(account);
+        client.setCname(name);
+        client.setCpsd(password);
+        JSONObject jsonObject = new JSONObject();
+        if (accountService.checkClientAcotRepeat(client) > 0) {
+            jsonObject.put("status", 0);
+        } else {
+            accountService.registerClient(client);
+            client = accountService.getClientInfo(client);
+            jsonObject.put("status", 1);
+            jsonObject.put("client", client);
+        }
+
+        try {
+            out = response.getWriter();
+            out.write(jsonObject.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     /***************************ClientRegister end***************************************************/
 

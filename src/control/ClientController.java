@@ -2,6 +2,8 @@ package control;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class ClientController {
@@ -123,6 +122,8 @@ public class ClientController {
             return "forward:clienthome";
         }
     }
+
+
 
     /***************************客户点菜 end***************************************************/
 
@@ -238,6 +239,62 @@ public class ClientController {
         }
     }
 
+    @RequestMapping(value = "/commitOrder.json", method = RequestMethod.POST)
+    public void commitOrderFromClient(HttpServletRequest request, HttpServletResponse response, Model model) {
+        response.setContentType("application/json;charset=utf-8");
+        PrintWriter out = null;
+        JSONObject json = new JSONObject();
+        JSONArray orderCarJson = JSONArray.fromObject(request.getParameter("orderCars"));
+        OrderCar orderCars[] = (OrderCar[]) JSONArray.toArray(orderCarJson, OrderCar.class);
+        OrderCar newOrderCar[] = new OrderCar[orderCars.length];
+
+
+        int deskId = Integer.parseInt(request.getParameter("deskId"));
+        int cId = Integer.parseInt(request.getParameter("cId"));
+        double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+        int oId=clientService.getMaxOid()+1;
+        Order order = new Order();
+        order.setoId(oId);
+        order.setcId(cId);
+        order.setwId(1);
+        order.setDeskId(deskId);
+        order.setTotal(totalPrice);
+        order.setPay(3);    //3表示现金支付
+        order.setStatus(0);     //0表示未完成
+        OrderCar orderCar;
+        try {
+            out = response.getWriter();
+            if(clientService.generateOrder(order)<=0){         //将Order插入数据库
+                json.put("status", 0);
+                out.write(json.toString());
+            }else{
+                for (int i = 0; i < orderCars.length; i++) {
+                    newOrderCar[i] = orderCars[i];
+                    OrderedMenu orderedMenu=new OrderedMenu();
+                    orderedMenu.setoId(oId);
+                    orderedMenu.setmId(orderCars[i].getmId());
+                    orderedMenu.setOmamot(orderCars[i].getOmamot());
+                    orderedMenu.setDeliver(0);   //0表示未分配
+                    clientService.generateOrderedMenu(orderedMenu);   //将OrderedMenu插入数据库
+                }
+
+                order = clientService.getOrderById(oId);
+//            orderCarList;
+                json.put("status", 1);
+                json.put("order", JSONObject.fromObject(order));
+                orderCarJson = JSONArray.fromObject(newOrderCar);
+                json.put("orderCars", orderCarJson);
+                out.write(json.toString());
+                System.out.println(json.toString());
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     /***************************现金支付订单 end***************************************************/
 
 
@@ -257,7 +314,57 @@ public class ClientController {
         return "client/myOrder";
     }
 
+    @RequestMapping(value = "/getAllOrdered.json", method = RequestMethod.POST)
+    public void getAllOrdered(HttpServletRequest request, HttpServletResponse response, Model model) {
+        response.setContentType("application/json;charset=utf-8");
+        PrintWriter out = null;
+        int cId = Integer.parseInt(request.getParameter("cId"));
+//        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        List<Order> orderList = clientService.getAllOrdersById(cId);
+        for (Order o :
+                orderList) {
+            JSONObject order_car = new JSONObject();
+            JSONObject orderObject = JSONObject.fromObject(o);
+            List<OrderCar> orderCarList = clientService.getMenusByOid(o.getoId());
+            JSONArray orderCarJSONArray = JSONArray.fromObject(orderCarList);
+            order_car.put("order", orderObject);
+            order_car.put("orderCars", orderCarJSONArray);
+            jsonArray.add(order_car);
+        }
+        try {
+            out = response.getWriter();
+            out.write(jsonArray.toString());
+            System.out.println("getAllOrdered:" + jsonArray.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     /***************************打开我的订单页面 end***************************************************/
+
+    @RequestMapping("/getOrder.json")
+    public void getOrder(HttpServletRequest request, HttpServletResponse response, Model model){
+        response.setContentType("application/json;charset=utf-8");
+        PrintWriter out = null;
+        JSONObject json = new JSONObject();
+
+        try {
+            out = response.getWriter();
+            Order order = clientService.getOrderById(1);
+            JSONObject jsonObject = JSONObject.fromObject(order);
+            json.put("order", jsonObject);
+            System.out.println(json.toString());
+
+            out.write(json.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
